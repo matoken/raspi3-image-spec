@@ -101,6 +101,7 @@ steps:
 
   - shell: |
       echo "rpi3" > "${ROOT?}/etc/hostname"
+      sed -i 's,localhost$,localhost rpi3,' "${ROOT?}/etc/hosts"
 
       # '..VyaTFxP8kT6' is crypt.crypt('raspberry', '..')
       sed -i 's,root:[^:]*,root:..VyaTFxP8kT6,' "${ROOT?}/etc/shadow"
