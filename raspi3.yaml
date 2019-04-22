@@ -80,6 +80,19 @@ steps:
     - wpasupplicant
     - raspi3-firmware
     - linux-image-arm64
+    - vim
+    - lv
+    - sudo
+    - fake-hwclock
+    - etckeeper
+    - locales
+    - msmtp
+    - apt-listchanges
+    - apticron
+    - molly-guard
+    - screenfetch
+    - f2fs-tools
+
     tag: /
     unless: rootfs_unpacked
 
