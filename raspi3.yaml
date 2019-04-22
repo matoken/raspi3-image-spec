@@ -107,6 +107,13 @@ steps:
       sed -i 's,root:[^:]*,root:..VyaTFxP8kT6,' "${ROOT?}/etc/shadow"
 
       sed -i 's,#PermitRootLogin prohibit-password,PermitRootLogin yes,g' "${ROOT?}/etc/ssh/sshd_config"
+      #sed -i 's,#PasswordAuthentication yes,PasswordAuthentication no,g' "${ROOT?}/etc/ssh/sshd_config"
+      echo 'AllowGroups sshusers' | tee -a "${ROOT?}/etc/ssh/sshd_config"
+      install -m 644 -o root -g root hosts.deny "${ROOT?}/etc/hosts.deny"
+      install -m 644 -o root -g root hosts.allow "${ROOT?}/etc/hosts.allow"
+      printf "\nAllowGroups sshusers\n" >> "${ROOT?}/etc/ssh/sshd_config"
+      awk '$5>=3071' /etc/ssh/moduli | tee "${ROOT?}/etc/ssh/moduli.tmp"
+      mv "${ROOT?}/etc/ssh/moduli.tmp" "${ROOT?}/etc/ssh/moduli"
 
       install -m 644 -o root -g root fstab "${ROOT?}/etc/fstab"
 
@@ -131,6 +138,10 @@ steps:
       Please change the root password by running passwd
       EOT
     root-fs: /
+
+  - chroot: /
+    shell: |
+      groupadd sshusers
 
   # Clean up archive cache (likely not useful) and lists (likely outdated) to
   # reduce image size by several hundred megabytes.
