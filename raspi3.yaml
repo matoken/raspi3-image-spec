@@ -143,6 +143,10 @@ steps:
     shell: |
       groupadd sshusers
 
+      useradd --shell /bin/bash -G sudo,sshusers,adm -m pi
+      # mkpasswd -m sha512crypt -S $(apg -a 0 -M NCL -n 1) raspberry
+      sed -i 's,^pi:[^:]*,pi:$6$AbDijVees3$IPxnMoRF99xswLgs6kjaqv7l6ef7XLI29asYvTu5QIc1YiiZwh7vJ1.ZjwMaxc3lTI1J8xf0Gp6islVDUC6EX/,' "/etc/shadow"
+
   # Clean up archive cache (likely not useful) and lists (likely outdated) to
   # reduce image size by several hundred megabytes.
   - chroot: /
