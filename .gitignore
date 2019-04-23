@@ -1,6 +1,7 @@
 # suggested build result and log filenames
 raspi3.img
 raspi3.log
+raspi3.tar.gz
 # after compress.sh
 compr.img
 compr.img.bz2
