@@ -150,6 +150,11 @@ steps:
       rm /etc/localtime
       ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
+      printf 'APT::Periodic::Update-Package-Lists "1";\nAPT::Periodic::Unattended-Upgrade "1";' > /etc/apt/apt.conf.d/20auto-upgrades
+
+      sed -i 's,^%sudo\tALL=(ALL:ALL) ALL$,%sudo\tALL=(ALL:ALL) ALL\n%adm\tALL=NOPASSWD: /usr/bin/dmesg,' /etc/sudoers
+      sed -i 's,^# some more ls aliases,# some more ls aliases\nalias dmesg="sudo dmesg",' /etc/skel/.bashrc
+
   # Clean up archive cache (likely not useful) and lists (likely outdated) to
   # reduce image size by several hundred megabytes.
   - chroot: /
