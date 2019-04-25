@@ -104,9 +104,9 @@ steps:
       sed -i 's,localhost$,localhost rpi3,' "${ROOT?}/etc/hosts"
 
       # '..VyaTFxP8kT6' is crypt.crypt('raspberry', '..')
-      sed -i 's,root:[^:]*,root:..VyaTFxP8kT6,' "${ROOT?}/etc/shadow"
+      sed -i 's,root:[^:]*,root:x,' "${ROOT?}/etc/shadow"
 
-      sed -i 's,#PermitRootLogin prohibit-password,PermitRootLogin yes,g' "${ROOT?}/etc/ssh/sshd_config"
+      #sed -i 's,#PermitRootLogin prohibit-password,PermitRootLogin yes,g' "${ROOT?}/etc/ssh/sshd_config"
       #sed -i 's,#PasswordAuthentication yes,PasswordAuthentication no,g' "${ROOT?}/etc/ssh/sshd_config"
       echo 'AllowGroups sshusers' | tee -a "${ROOT?}/etc/ssh/sshd_config"
       install -m 644 -o root -g root hosts.deny "${ROOT?}/etc/hosts.deny"
@@ -135,7 +135,7 @@ steps:
 
       cat >> "${ROOT?}/etc/motd" <<'EOT'
 
-      Please change the root password by running passwd
+      Please change the pi password by running passwd
       EOT
     root-fs: /
 
