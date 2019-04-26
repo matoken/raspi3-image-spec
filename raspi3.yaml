@@ -11,12 +11,12 @@ steps:
     fs-type: 'fat32'
     device: "{{ output }}"
     start: 0%
-    end: 20%
+    end: 256M
     tag: /boot
 
   - mkpart: primary
     device: "{{ output }}"
-    start: 20%
+    start: 256M
     end: 100%
     tag: /
 
@@ -181,3 +181,4 @@ steps:
   - shell: |
       rm "${ROOT?}/etc/resolv.conf"
     root-fs: /
+
