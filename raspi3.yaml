@@ -175,6 +175,8 @@ steps:
       ls -aR /boot
       sed -i 's/.dev.mmcblk0p2/LABEL=RASPIROOT/' /boot/firmware/cmdline.txt
 
+      echo "gpu_mem=16  # default 64(MB)" >> /boot/firmware/config.txt
+
   # TODO(https://github.com/larswirzenius/vmdb2/issues/24): remove once vmdb
   # clears /etc/resolv.conf on its own.
   - shell: |
