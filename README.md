@@ -5,7 +5,7 @@ https://wiki.debian.org/RaspberryPi3 has been built.
 
 ## Option 1: Downloading an image
 
-See https://wiki.debian.org/RaspberryPi3#Preview_image for where to obtain the latest pre-built image.
+See https://yadi.sk/d/bQrAF089owp1WA for where to obtain the latest pre-built image.
 
 ## Option 2: Building your own image
 
@@ -37,7 +37,7 @@ future. You can choose:
 
 	```shell
 	apt install kpartx parted qemu-utils qemu-user-static python3-cliapp \
-    python3-jinja2 python3-yaml
+    python3-jinja2 python3-yaml f2fs-tools
 	```
 
   Note that `python3-cliapp` is not available in Stretch, but as it
@@ -97,12 +97,12 @@ correctly resolves hostnames communicated via DHCP, you can log into
 your Raspberry Pi 3 once it booted:
 
 ```shell
-ssh root@rpi3
+ssh pi@rpi3
 # Enter password “raspberry”
 ```
 
 Note that the default firewall rules only allow SSH access from the local
-network. If you wish to enable SSH access globally, first change your root
+network. If you wish to enable SSH access globally, first change your pi
 password using `passwd`. Next, issue the following commands as root to remove
 the corresponding firewall rules:
 
