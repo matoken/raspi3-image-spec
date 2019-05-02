@@ -2,7 +2,7 @@
 
 steps:
   - mkimg: "{{ output }}"
-    size: 1700M
+    size: 1800M
 
   - mklabel: msdos
     device: "{{ output }}"
@@ -92,6 +92,7 @@ steps:
     - molly-guard
     - screenfetch
     - f2fs-tools
+    - mosh
 
     tag: /
     unless: rootfs_unpacked
