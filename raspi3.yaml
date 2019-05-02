@@ -133,10 +133,6 @@ steps:
       ln -s /etc/systemd/system/rpi3-generate-ssh-host-keys.service "${ROOT?}/etc/systemd/system/multi-user.target.requires/rpi3-generate-ssh-host-keys.service"
       rm -f ${ROOT?}/etc/ssh/ssh_host_*_key*
 
-      cat >> "${ROOT?}/etc/motd" <<'EOT'
-
-      Please change the pi password by running passwd
-      EOT
     root-fs: /
 
   - chroot: /
@@ -146,6 +142,8 @@ steps:
       useradd --shell /bin/bash -G sudo,sshusers,adm -m pi
       # mkpasswd -m sha512crypt -S $(apg -a 0 -M NCL -n 1) raspberry
       sed -i 's,^pi:[^:]*,pi:$6$AbDijVees3$IPxnMoRF99xswLgs6kjaqv7l6ef7XLI29asYvTu5QIc1YiiZwh7vJ1.ZjwMaxc3lTI1J8xf0Gp6islVDUC6EX/,' "/etc/shadow"
+      # force change password.
+      chage -d 0 pi
 
       rm /etc/localtime
       ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
