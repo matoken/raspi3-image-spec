@@ -1,11 +1,12 @@
 # Raspberry Pi 3 image spec
 
-This repository contains the files with which the image referenced at
-https://wiki.debian.org/RaspberryPi3 has been built.
+Original
+https://github.com/Debian/raspi3-image-spec
 
 ## Option 1: Downloading an image
 
-See https://yadi.sk/d/bQrAF089owp1WA for where to obtain the latest pre-built image.
+See release page for where to obtain the latest pre-built image.  
+https://github.com/matoken/raspi3-image-spec/releases
 
 ## Option 2: Building your own image
 
@@ -112,6 +113,6 @@ ip6tables -F INPUT
 ```
 
 This will allow SSH connections globally until the next reboot. To make this
-persistent, remove the lines containing "REJECT" in `/etc/iptables/rules.v4` and
-`/etc/iptables/rules.v6`.
+persistent, remove the lines containing "REJECT" in `/etc/iptables/rules.v4`, 
+`/etc/iptables/rules.v6` and `/etc/hosts.allow`.
 
